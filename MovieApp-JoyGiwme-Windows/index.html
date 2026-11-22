@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Download JoyGiwme Setup 0.1.1 for Windows</title>
-<meta name="description" content="Download JoyGiwme Setup 0.1.1 for Windows 10/11 (64-bit) from the official GitHub release." />
+<meta name="description" content="Download JoyGiwme Setup 0.1.1 for Windows 10/11 (64-bit) from the official GitHub release. Not on Windows? Watch on our main website." />
 <meta name="theme-color" content="#0b1020" />
 <style>
   :root {
@@ -332,30 +332,27 @@
       <p class="meta">JoyGiwme-Setup-0.1.1.exe · Windows 10/11 · 64-bit · v1.0.0 release</p>
     </div>
 
-    <!-- 🚫 NON-WINDOWS PANEL -->
+    <!-- 🚫 NON-WINDOWS PANEL — watch on main website -->
     <div class="panel" id="otherPanel">
       <p class="notice">
-        <strong>Heads up:</strong> this build only runs on Windows. If you're on macOS, Linux,
-        Android or iOS, use the manual download below to save the installer for a Windows PC.
+        <strong>Not on Windows?</strong> The JoyGiwme desktop app is only available for Windows.
+        You can watch everything right now on our main website — no download needed.
       </p>
-      <a class="btn btn-primary"
-         id="otherDownloadBtn"
-         href="https://github.com/GiwmeSwaingithub/dekutconnectWEB/releases/download/v1.0.0/JoyGiwme-Setup-0.1.1.exe"
-         rel="noopener">
+      <a class="btn btn-primary" href="https://movie.mindtechapps.site" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M4 21h16"/>
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
         </svg>
-        Manual download (.exe)
+        Watch on our main website
       </a>
-      <p class="meta">JoyGiwme-Setup-0.1.1.exe · save it, then run it on a Windows PC</p>
+      <p class="meta">movie.mindtechapps.site · works on any device</p>
     </div>
 
     <div class="divider">Fallback options</div>
 
     <!-- 🔁 ALWAYS-VISIBLE MANUAL FALLBACK -->
     <p class="fallback-text">
-      Download not starting, or blocked by your browser?
+      On a Windows PC and the download isn't starting? Grab the installer manually.
     </p>
     <a class="btn btn-ghost"
        href="https://github.com/GiwmeSwaingithub/dekutconnectWEB/releases/download/v1.0.0/JoyGiwme-Setup-0.1.1.exe"
@@ -365,7 +362,7 @@
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>
       </svg>
-      Manual download
+      Manual download (.exe)
     </a>
     <p class="meta">
       Direct link:
@@ -387,6 +384,7 @@
         <li>Still stuck? Open the file's <a class="link"
             href="https://github.com/GiwmeSwaingithub/dekutconnectWEB/releases/tag/v1.0.0"
             rel="noopener">GitHub release page</a> and press the download icon next to the asset.</li>
+        <li>Don't have a Windows PC? Just <a class="link" href="https://movie.mindtechapps.site" rel="noopener">watch on our main website</a>.</li>
       </ol>
     </details>
 
@@ -424,7 +422,6 @@
     var platform = navigator.platform || "";
     var uaData = navigator.userAgentData;
 
-    // Modern, privacy-preserving API (Chromium browsers)
     if (uaData && typeof uaData.platform === "string" && uaData.platform) {
       if (/windows/i.test(uaData.platform)) return "windows";
       if (/mac/i.test(uaData.platform))     return "mac";
@@ -434,7 +431,6 @@
       return "other";
     }
 
-    // Fallbacks
     if (/windows nt|win32|win64|wow64/i.test(ua) || /^win/i.test(platform)) return "windows";
     if (/android/i.test(ua))                        return "android";
     if (/iphone|ipad|ipod/i.test(ua))               return "ios";
@@ -467,20 +463,21 @@
     winPanel.classList.add("active");
   } else {
     pill.classList.add("is-other");
-    osLabel.textContent = prettyName(os) + " detected — Windows app only";
-    headline.textContent = "JoyGiwme is for Windows";
+    osLabel.textContent = prettyName(os) + " detected — watch on our website";
+    headline.textContent = "Watch on our main website";
     subline.textContent =
-      "This installer runs on Windows 10 and 11 (64-bit). You can still download it manually for a Windows PC.";
+      "The JoyGiwme desktop app is only available for Windows. On " + prettyName(os) +
+      " you can stream everything directly on our website — no download needed.";
     otherPanel.classList.add("active");
   }
 
-  // Safety net: if JS partially fails, nothing is left hidden.
+  // Safety net
   if (!winPanel.classList.contains("active") && !otherPanel.classList.contains("active")) {
     winPanel.classList.add("active");
   }
 
-  /* ---------- Force correct hrefs (single source of truth) ---------- */
-  ["mainDownloadBtn", "otherDownloadBtn"].forEach(function (id) {
+  /* ---------- Force correct hrefs ---------- */
+  ["mainDownloadBtn"].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) el.setAttribute("href", DOWNLOAD_URL);
   });
@@ -528,7 +525,7 @@
     }
   });
 
-  /* ---------- Optional: confirm the click registered ---------- */
+  /* ---------- Confirm download clicks ---------- */
   document.querySelectorAll('a[href*="JoyGiwme-Setup-0.1.1.exe"]').forEach(function (a) {
     a.addEventListener("click", function () {
       showToast("Starting download…");
